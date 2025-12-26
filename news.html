@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Новости — CyberX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="loader" class="loader">
+    <div class="loader-text">INITIALIZING ARENA...</div>
+    <div class="loader-bar"></div>
+  </div>
+
+  <header>
+    <div class="container header-container">
+      <div class="logo">CYBER<span>X</span></div>
+      <nav>
+        <a href="index.html">Главная</a>
+        <a href="tournaments.html">Турниры</a>
+        <a href="news.html" class="active">Новости</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="contacts.html">Контакты</a>
+        <div id="auth-buttons" class="auth-buttons">
+          <a href="login.html" class="btn-auth">Вход</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="glitch" data-text="АРЕНА: НОВОСТИ">АРЕНА: НОВОСТИ</h1>
+
+    <div class="news-grid">
+      <div class="news-card tilt-card" data-tilt>
+        <h2>🔥 CS2 Weekly Cup — каждую субботу!</h2>
+        <p class="date">24 декабря 2025</p>
+        <p>Турнир по CS2 каждую субботу в 18:00. Призовой фонд — 5 000 ₽! Регистрация открыта в личном кабинете.</p>
+      </div>
+
+      <div class="news-card tilt-card" data-tilt>
+        <h2>🎮 Новые ПК в зале VIP!</h2>
+        <p class="date">20 декабря 2025</p>
+        <p>Обновили 4 станции в VIP-зале: RTX 4090, Ryzen 9 7950X, 64 ГБ RAM. Бронируйте первыми!</p>
+      </div>
+
+      <div class="news-card tilt-card" data-tilt>
+        <h2>🍕 Партнёрство с Burger King!</h2>
+        <p class="date">15 декабря 2025</p>
+        <p>Теперь вы можете заказать сет БК прямо из кабинета! Доставка за 7 минут. CyberPoints действуют.</p>
+      </div>
+
+      <div class="news-card tilt-card" data-tilt>
+        <h2>🛡️ CyberX League: финал сезона</h2>
+        <p class="date">10 декабря 2025</p>
+        <p>Финал лиги по Dota 2 пройдёт 28 декабря в Барнауле. Прямая трансляция на Twitch!</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="cyber-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">CYBER<span>X</span></div>
+          <p>Киберспортивные арены нового поколения</p>
+        </div>
+        <div class="footer-col">
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="tournaments.html">Турниры</a></li>
+            <li><a href="news.html">Новости</a></li>
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Клубы</h4>
+          <ul>
+            <li>Барнаул</li>
+            <li>Новосибирск</li>
+            <li>Москва</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Связаться</h4>
+          <p>+7 (999) 123-45-67</p>
+          <p>barnaul@cyberx.ru</p>
+          <div class="footer-social">
+            <a href="https://t.me/cyberx_community" target="_blank">Telegram</a> •
+            <a href="https://vk.com/cyberx" target="_blank">VK</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 CyberX . Все права защищены. 
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/tilt.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof updateAuthButtons === 'function') {
+        updateAuthButtons();
+      }
+    });
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('loader')?.remove(), 1800);
+    });
+  </script>
+</body>
+</html>
