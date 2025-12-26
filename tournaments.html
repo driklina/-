@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Турниры — CyberX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Rajdhani:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .terminal-header {
+      font-family: 'Source Code Pro', monospace;
+      color: var(--neon-cyan);
+      margin: 30px 0 20px;
+      font-size: 24px;
+    }
+    .filters {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--neon-cyan);
+      color: var(--text);
+      padding: 8px 16px;
+      cursor: pointer;
+      font-family: 'Source Code Pro', monospace;
+      transition: all 0.3s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--neon-cyan);
+      color: var(--bg);
+    }
+    .tournament-list {
+      font-family: 'Source Code Pro', monospace;
+      background: rgba(10, 3, 32, 0.4);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .tournament-item {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+    }
+    .tournament-item:last-child {
+      border-bottom: none;
+    }
+    .tournament-date {
+      color: var(--neon-pink);
+      font-weight: 600;
+    }
+    .tournament-title {
+      color: var(--neon-cyan);
+      margin: 4px 0;
+    }
+    .tournament-game {
+      font-size: 14px;
+      color: #aaa;
+    }
+    .remind-btn {
+      background: transparent;
+      border: 1px solid var(--neon-pink);
+      color: var(--neon-pink);
+      padding: 4px 10px;
+      margin-top: 8px;
+      font-family: 'Source Code Pro', monospace;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .remind-btn:hover {
+      background: var(--neon-pink);
+      color: var(--bg);
+    }
+    .remind-btn.set {
+      background: var(--neon-pink);
+      color: var(--bg);
+    }
+  </style>
+</head>
+<body>
+  <div id="loader" class="loader">
+    <div class="loader-text">INITIALIZING ARENA...</div>
+    <div class="loader-bar"></div>
+  </div>
+
+  <header>
+    <div class="container header-container">
+      <div class="logo">CYBER<span>X</span></div>
+      <nav>
+        <a href="index.html">Главная</a>
+        <a href="tournaments.html" class="active">Турниры</a>
+        <a href="news.html">Новости</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="contacts.html">Контакты</a>
+        <div id="auth-buttons" class="auth-buttons">
+          <a href="login.html" class="btn-auth">Вход</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="terminal-header">>> CYBERX TOURNAMENT SCHEDULE</h1>
+    
+    <div class="filters">
+      <button class="filter-btn active" data-game="all">[ALL]</button>
+      <button class="filter-btn" data-game="cs2">[CS2]</button>
+      <button class="filter-btn" data-game="dota2">[Dota 2]</button>
+      <button class="filter-btn" data-game="valorant">[Valorant]</button>
+    </div>
+
+    <div class="tournament-list" id="tournament-list">
+      <!-- Турниры будут загружены через JS -->
+    </div>
+  </main>
+
+  <footer class="cyber-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">CYBER<span>X</span></div>
+          <p>Киберспортивные арены нового поколения</p>
+        </div>
+        <div class="footer-col">
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="tournaments.html">Турниры</a></li>
+            <li><a href="news.html">Новости</a></li>
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Клубы</h4>
+          <ul>
+            <li>Барнаул</li>
+            <li>Новосибирск</li>
+            <li>Москва</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Связаться</h4>
+          <p>+7 (999) 123-45-67</p>
+          <p>barnaul@cyberx.ru</p>
+          <div class="footer-social">
+            <a href="https://t.me/cyberx_community" target="_blank">Telegram</a> •
+            <a href="https://vk.com/cyberx" target="_blank">VK</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 CyberX . Все права защищены. 
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script>
+    const tournaments = [
+      { id: 1, title: "CS2 Weekly Cup", date: "2025-12-28T18:00", game: "cs2", prize: "5000 ₽" },
+      { id: 2, title: "Dota 2 Open Barnaul", date: "2025-12-29T16:00", game: "dota2", prize: "7000 ₽" },
+      { id: 3, title: "Valorant Night League", date: "2026-01-04T20:00", game: "valorant", prize: "3000 ₽" },
+      { id: 4, title: "CS2 Pro Showmatch", date: "2026-01-11T19:00", game: "cs2", prize: "10000 ₽" },
+      { id: 5, title: "Dota 2 Community Clash", date: "2026-01-18T17:00", game: "dota2", prize: "5000 ₽" }
+    ];
+
+    function formatDate(isoString) {
+      const date = new Date(isoString);
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const hours = String(date.getHours()).padStart(2, '0');
+      const mins = String(date.getMinutes()).padStart(2, '0');
+      return `${day}.${month} • ${hours}:${mins}`;
+    }
+
+    function getReminders() {
+      return JSON.parse(localStorage.getItem('cyberxTournamentReminders') || '[]');
+    }
+
+    function setReminder(tournamentId, shouldRemind) {
+      let reminders = getReminders();
+      if (shouldRemind) {
+        if (!reminders.includes(tournamentId)) {
+          reminders.push(tournamentId);
+        }
+      } else {
+        reminders = reminders.filter(id => id !== tournamentId);
+      }
+      localStorage.setItem('cyberxTournamentReminders', JSON.stringify(reminders));
+      renderTournaments(currentFilter);
+    }
+
+    let currentFilter = 'all';
+    function renderTournaments(gameFilter) {
+      const list = document.getElementById('tournament-list');
+      const filtered = gameFilter === 'all' 
+        ? tournaments 
+        : tournaments.filter(t => t.game === gameFilter);
+
+      list.innerHTML = filtered.map(t => {
+        const isReminded = getReminders().includes(t.id);
+        return `
+          <div class="tournament-item">
+            <div class="tournament-date">${formatDate(t.date)}</div>
+            <div class="tournament-title">${t.title}</div>
+            <div class="tournament-game">[ ${t.game.toUpperCase()} ] • Приз: ${t.prize}</div>
+            <button class="remind-btn ${isReminded ? 'set' : ''}" 
+                    onclick="setReminder(${t.id}, ${!isReminded})">
+              ${isReminded ? 'НАПОМНИТЬ ВКЛ' : 'НАПОМНИТЬ'}
+            </button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.game;
+        renderTournaments(currentFilter);
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTournaments('all');
+      if (typeof updateAuthButtons === 'function') {
+        updateAuthButtons();
+      }
+    });
+
+    window.setReminder = setReminder;
+
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('loader')?.remove(), 1800);
+    });
+  </script>
+</body>
+</html>
