@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Личный кабинет — CyberX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="loader" class="loader">
+    <div class="loader-text">INITIALIZING ...</div>
+    <div class="loader-bar"></div>
+  </div>
+
+  <header>
+    <div class="container header-container">
+      <div class="logo">CYBER<span>X</span></div>
+      <nav>
+        <a href="index.html">Главная</a>
+        <a href="tournaments.html">Турниры</a>
+        <a href="news.html">Новости</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="contacts.html">Контакты</a>
+        <div id="auth-buttons" class="auth-buttons">
+          <a href="login.html" class="btn-auth">Вход</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Привет, <span id="userName">Гладиатор</span>!</h1>
+
+    <div class="profile-stats">
+      <div class="stat-item">
+        <div class="stat-value" id="points">0</div>
+        <div class="stat-label">CyberPoints</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="total-hours">0</div>
+        <div class="stat-label">Часов в клубе</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="bookings-count">0</div>
+        <div class="stat-label">Бронирований</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="last-order">—</div>
+        <div class="stat-label">Последний заказ</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="next-tournament">—</div>
+        <div class="stat-label">Ближайший турнир</div>
+      </div>
+    </div>
+
+    <div class="activity-widget">
+      <div class="activity-label">Активность за неделю</div>
+      <div class="activity-grid" id="activity-grid"></div>
+    </div>
+
+    <h2>Выберите зал</h2>
+    <div class="hall-selection">
+      <button class="hall-btn active" data-type="standard">Standard</button>
+      <button class="hall-btn" data-type="vip">VIP</button>
+      <button class="hall-btn" data-type="tv">TV</button>
+    </div>
+
+    <div id="pc-list" class="pc-grid"></div>
+    <div id="booking-result" style="margin-top: 20px; color: var(--neon-cyan);"></div>
+  </main>
+
+  <footer class="cyber-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">CYBER<span>X</span></div>
+          <p>Киберспортивные арены нового поколения</p>
+        </div>
+        <div class="footer-col">
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="tournaments.html">Турниры</a></li>
+            <li><a href="news.html">Новости</a></li>
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Клубы</h4>
+          <ul>
+            <li>Барнаул</li>
+            <li>Новосибирск</li>
+            <li>Москва</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Связаться</h4>
+          <p>+7 (999) 123-45-67</p>
+          <p>barnaul@cyberx.ru</p>
+          <div class="footer-social">
+            <a href="https://t.me/cyberx_community" target="_blank">Telegram</a> •
+            <a href="https://vk.com/cyberx" target="_blank">VK</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 CyberX . Все права защищены. 
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/booking.js"></script>
+  <script src="js/tilt.js"></script>
+  <script>
+    function renderActivityWidget(user) {
+      const grid = document.getElementById('activity-grid');
+      if (!grid || !user.activityLog) return;
+
+      const today = new Date();
+      const days = [];
+      for (let i = 4; i >= 0; i--) {
+        const date = new Date(today);
+        date.setDate(date.getDate() - i);
+        const dateStr = date.toISOString().split('T')[0];
+        days.push(dateStr);
+      }
+
+      grid.innerHTML = days.map(day => {
+        const isActive = user.activityLog.includes(day);
+        return `<div class="day ${isActive ? 'active' : ''}" title="${day}"></div>`;
+      }).join('');
+    }
+
+    function loadProfile() {
+      const email = localStorage.getItem('cyberxCurrent');
+      if (!email) return window.location.href = 'login.html';
+
+      const users = JSON.parse(localStorage.getItem('cyberxUsers') || '[]');
+      const user = users.find(u => u.email === email);
+      if (!user) {
+        localStorage.removeItem('cyberxCurrent');
+        return window.location.href = 'login.html';
+      }
+
+      document.getElementById('userName').textContent = user.name;
+      document.getElementById('points').textContent = user.points || 0;
+      document.getElementById('total-hours').textContent = user.totalHours || 0;
+      document.getElementById('bookings-count').textContent = user.bookingsCount || 0;
+      document.getElementById('last-order').textContent = user.lastOrder
+        ? `${user.lastOrder.items.length} поз., ${user.lastOrder.total} ₽`
+        : '—';
+      document.getElementById('next-tournament').textContent =
+        user.registeredTournaments.length > 0
+          ? user.registeredTournaments[user.registeredTournaments.length - 1]
+          : '—';
+
+      renderActivityWidget(user);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProfile();
+      if (typeof updateAuthButtons === 'function') {
+        updateAuthButtons();
+      }
+    });
+
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('loader')?.remove(), 1800);
+    });
+  </script>
+</body>
+</html>
