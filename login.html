@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Вход — CyberX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="loader" class="loader">
+    <div class="loader-text">INITIALIZING ...</div>
+    <div class="loader-bar"></div>
+  </div>
+
+  <header>
+    <div class="container header-container">
+      <div class="logo">CYBER<span>X</span></div>
+      <nav>
+        <a href="index.html">Главная</a>
+        <a href="tournaments.html">Турниры</a>
+        <a href="news.html">Новости</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="contacts.html">Контакты</a>
+        <div id="auth-buttons" class="auth-buttons">
+          <a href="login.html" class="btn-auth">Вход</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="auth-container">
+    <h2>Вход в аккаунт</h2>
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Email" required>
+      <input type="password" id="loginPass" placeholder="Пароль" required>
+      <button type="submit" class="btn">Войти</button>
+      <p>Нет аккаунта? <a href="register.html">Зарегистрироваться</a></p>
+    </form>
+  </div>
+
+  <footer class="cyber-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">CYBER<span>X</span></div>
+          <p>Киберспортивные арены нового поколения</p>
+        </div>
+        <div class="footer-col">
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="tournaments.html">Турниры</a></li>
+            <li><a href="news.html">Новости</a></li>
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Клубы</h4>
+          <ul>
+            <li>Барнаул</li>
+            <li>Новосибирск</li>
+            <li>Москва</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Связаться</h4>
+          <p>+7 (999) 123-45-67</p>
+          <p>barnaul@cyberx.ru</p>
+          <div class="footer-social">
+            <a href="https://t.me/cyberx_community" target="_blank">Telegram</a> •
+            <a href="https://vk.com/cyberx" target="_blank">VK</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 CyberX . Все права защищены. 
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof updateAuthButtons === 'function') {
+        updateAuthButtons();
+      }
+    });
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('loader')?.remove(), 1800);
+    });
+  </script>
+</body>
+</html>
