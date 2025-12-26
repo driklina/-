@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Контакты — CyberX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="loader" class="loader">
+    <div class="loader-text">INITIALIZING ...</div>
+    <div class="loader-bar"></div>
+  </div>
+
+  <header>
+    <div class="container header-container">
+      <div class="logo">CYBER<span>X</span></div>
+      <nav>
+        <a href="index.html">Главная</a>
+        <a href="tournaments.html">Турниры</a>
+        <a href="news.html">Новости</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="contacts.html" class="active">Контакты</a>
+        <div id="auth-buttons" class="auth-buttons">
+          <a href="login.html" class="btn-auth">Вход</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="glitch" data-text="СВЯЗЬ С НАМИ">СВЯЗЬ С НАМИ</h1>
+
+    <div class="contacts-section">
+      <div class="contact-info tilt-card" data-tilt>
+        <h2>📍 Барнаул</h2>
+        <p><strong>Адрес:</strong> Красноармейский проспект, 72</p>
+        <p><strong>Телефон:</strong> +7 (999) 123-45-67</p>
+        <p><strong>Режим работы:</strong> ежедневно с 10:00 до 02:00</p>
+        <p><strong>Email:</strong> barnaul@cyberx.ru</p>
+      </div>
+
+      <div class="social-links tilt-card" data-tilt>
+        <h2>📡 Соцсети</h2>
+        <p>Следите за анонсами и турнирами:</p>
+        <ul>
+          <li>💬 <a href="https://t.me/cyberx_community" target="_blank">Telegram</a></li>
+          <li>🎥 <a href="https://twitch.tv/cyberx" target="_blank">Twitch</a></li>
+          <li>📱 <a href="https://vk.com/cyberx" target="_blank">VK</a></li>
+          <li>📸 <a href="https://instagram.com/cyberx_official" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+
+      <div class="map-placeholder tilt-card" data-tilt>
+        <h2>🗺️ Карта</h2>
+        <p>Клуб расположен в центре Барнаула, рядом с ТЦ «Энергия».</p>
+        <div class="map-image">
+          <div style="background:#1e1e25; height:180px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--neon-cyan);">
+            Yandex Maps: CyberX Барнаул
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="cyber-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">CYBER<span>X</span></div>
+          <p>Киберспортивные арены нового поколения</p>
+        </div>
+        <div class="footer-col">
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="tournaments.html">Турниры</a></li>
+            <li><a href="news.html">Новости</a></li>
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Клубы</h4>
+          <ul>
+            <li>Барнаул</li>
+            <li>Новосибирск</li>
+            <li>Москва</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Связаться</h4>
+          <p>+7 (999) 123-45-67</p>
+          <p>barnaul@cyberx.ru</p>
+          <div class="footer-social">
+            <a href="https://t.me/cyberx_community" target="_blank">Telegram</a> •
+            <a href="https://vk.com/cyberx" target="_blank">VK</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 CyberX . Все права защищены.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/tilt.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof updateAuthButtons === 'function') {
+        updateAuthButtons();
+      }
+    });
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('loader')?.remove(), 1800);
+    });
+  </script>
+</body>
+</html>
